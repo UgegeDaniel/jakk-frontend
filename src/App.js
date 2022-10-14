@@ -18,20 +18,7 @@ function App() {
     if (login) {
       setStudent(login)
     }
-  }, [])
-  
-  useEffect(()=>{
-    const cleanUp = setInterval(()=>{
-        localStorage.setItem('timer', JSON.stringify(timer))
-     }, 3000)
-     return ()=> clearInterval(cleanUp)
-     if(timer.hour > 0){
-       const oldTimer = JSON.parse(localStorage.getItem('timer'))
-     if (oldTimer) {
-      setTimer(oldTimer)
-      }
-     }
-  },[])
+  }, []) 
 
   return (
     <Router>
