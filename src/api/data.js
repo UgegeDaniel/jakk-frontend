@@ -6,9 +6,10 @@ const options = {
     },
     method: "GET",
 };
-
-const baseUrl = 'https://questions.aloc.com.ng/api/v2/m?subject='
-const subjectsUrl = 'https://questions.aloc.com.ng/api/metrics/subjects-available-for/2013'
+const baseUrl = 'https://questions.aloc.com.ng/api/'
+const questionsUrl = `${baseUrl}/v2/q?`
+const subjectsUrl = `${baseUrl}metrics/list-subjects`
+const yearsUrl = '${baseUrl}metrics/years-available-for'
 export const fetchSubjects = async () => {
     try {
         const response = await (subjectsUrl, options)
@@ -22,7 +23,7 @@ export const fetchSubjects = async () => {
 
 export const fetchYears = async (subject) => {
     try {
-        const response = await fetch(`${baseUrl}${subject}`, options)
+        const response = await fetch(`${yearsUrl}/${subject}`, options)
         const { data } = await response.json()
         console.log(data)
         return data
@@ -33,7 +34,7 @@ export const fetchYears = async (subject) => {
 
 export const fetchQuestions = async (subject = "chemistry", year = "2010", examType = "utme") => {
     try {
-        const response = await fetch(`${baseUrl}${subject}&year=${year}&type=${examType}`, options)
+        const response = await fetch(`${questionUrl}subject=${subject}&year={year}&type=${examType}`, options)
         const { data } = await response.json()
         console.log(data)
         return data
