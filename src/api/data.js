@@ -8,10 +8,10 @@ const options = {
 };
 
 const baseUrl = 'https://questions.aloc.com.ng/api/v2/m?subject='
-
+const subjectsUrl = 'https://questions.aloc.com.ng/api/metrics/subjects-available-for/2013'
 export const fetchSubjects = async () => {
     try {
-        const response = await fetch(`${baseUrl}`, options)
+        const response = await (subjectsUrl, options)
         const { data } = await response.json()
         console.log(data)
         return data
