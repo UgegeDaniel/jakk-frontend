@@ -1,0 +1,177 @@
+a{
+    text-decoration: none;
+}
+
+.bouncing-balls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100px;
+    height: 100px;
+    margin-top: 5rem;
+}
+
+.bouncing-balls div {
+    width: 200px;
+    height: 100px;
+    border-radius: 50%;
+    animation: boucning 0.5s cubic-bezier(0.19, 0.57, 0.3, .98) infinite alternate;
+}
+
+.bouncing-balls div:nth-child(2) {
+    animation-delay: 0.1s;
+    opacity: 0.8;
+}
+
+.bouncing-balls div:nth-child(3) {
+    animation-delay: 0.2s;
+    opacity: 0.6;
+}
+
+.bouncing-balls div:nth-child(4) {
+    animation-delay: 0.3s;
+    opacity: 0.4;
+}
+
+@keyframes boucning {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-80%);
+    }
+}
+
+.skeletons header {
+    background: #1e65ff;
+    padding: 10px;
+}
+
+.skeletons header {
+    color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skeletons h2 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.skeletons .content {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    gap: 100px;
+    margin: 0m auto;
+    grid-template-columns: 2fr 1fr;
+    padding: 20px;
+}
+
+.skeleton {
+    background-color: #ddd;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.skeleton.text {
+    width: 100%;
+    height: 10px;
+}
+
+.skeleton.title {
+    width: 50%;
+    height: 18px;
+    margin-bottom: 15px;
+}
+
+.btnContainer {
+    display: flex;
+}
+
+.skeleton.btn {
+    width: 75px;
+    height: 20px;
+    margin-bottom: 15px;
+    margin-left: 20px
+}
+
+.skeleton.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.skeleton.option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.skeleton.thumbnail {
+    width: 100px;
+    height: 100px;
+}
+
+.skeleton-wrapper {
+    margin: 20px auto;
+    padding: 10px 15px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-profile {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.skeleton-wrapper.light {
+    background: #f2f2f2
+}
+
+.skeleton-wrapper.dark {
+    background: #444
+}
+
+.skeleton-wrapper.dark .skeleton {
+    background: #fff;
+}
+
+.shimmer-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: shimmer 2.5s infinite;
+}
+
+.shimmer {
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skew(-20deg);
+    box-shadow: 0 0 30px 30px rgba(255, 255, 255, 0.5);
+}
+
+.dark .shimmer {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-150%)
+    }
+
+    50% {
+        transform: translateX(-60%)
+    }
+
+    100% {
+        transform: translateX(150%)
+    }
+}
