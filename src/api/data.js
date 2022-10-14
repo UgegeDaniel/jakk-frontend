@@ -9,7 +9,7 @@ const options = {
 const baseUrl = 'https://questions.aloc.com.ng/api/'
 const questionsUrl = `${baseUrl}/v2/q?`
 const subjectsUrl = `${baseUrl}metrics/list-subjects`
-const yearsUrl = '${baseUrl}metrics/years-available-for'
+const yearsUrl = `${baseUrl}metrics/years-available-for`
 
 export const fetchSubjects = async () => {
     try {
