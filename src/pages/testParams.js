@@ -3,27 +3,27 @@ import { useStyles } from '../components/styles';
 import { useNavigate } from 'react-router-dom';
 import { BouncingLoader, Param } from '../components'
 import { useState, useEffect } from 'react'
-import { fetchQuestions, fetchSubjects, fetchYears } from '../api'
+import { fetchQuestions, subjects, fetchYears } from '../api'
 import { handleTestStart } from '../utils'
 
 const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNotification }) => {
-    const [subjects, setSubjects] = useState([])
+    //const [subjects, setSubjects] = useState()
     const [years, setYears] = useState([])
     const classes = useStyles();
     const { subject, year, examtype } = testParams
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchData = async()=>{
-           const data = await fetchSubjects()
-           if(data){
-              setSubjects(Object.values(data))
-           }else{
-             return
-           }
-         }
-      fetchData()
-    }, [])
+    //useEffect(() => {
+        //const fetchData = async()=>{
+          // const data = await fetchSubjects()
+          // if(data){
+              //setSubjects(Object.values(data))
+          // }else{
+            // return
+          // }
+         //}
+     // fetchData()
+    //}, [])
 
     useEffect(() => {
       const fetchData = async () => {
