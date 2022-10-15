@@ -8,19 +8,19 @@ const options = {
 };
 const baseUrl = 'https://questions.aloc.com.ng/api'
 const questionsUrl = `${baseUrl}/v2/q/40?`
-const subjectsUrl = `${baseUrl}/metrics/list-subjects`
+//const subjectsUrl = `${baseUrl}/metrics/list-subjects`
 const yearsUrl = `${baseUrl}/metrics/years-available-for`
-
-export const fetchSubjects = async () => {
-    try {
-        const response = await fetch(subjectsUrl)
-        const { data } = await response.json()
-        console.log(data)
-        return data
-    } catch (error) {
-        console.log(error)
-    }
-}
+export const subjects = []
+//export const fetchSubjects = async () => {
+    //try {
+        //const response = await fetch(subjectsUrl)
+        //const { data } = await response.json()
+        //console.log(data)
+        //return data
+    //} catch (error) {
+        //console.log(error)
+    //}
+//}
 
 export const fetchYears = async (subject) => {
     try {
