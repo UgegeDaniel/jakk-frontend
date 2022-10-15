@@ -1,6 +1,6 @@
 export { fetchQuestions } from './data'
 export { fetchYears } from './data'
-export { subjects } from './data'
+export { fetchSubjects } from './data'
 export { login } from './auth'
 export { signup } from './auth'
 export { logout } from './auth'
