@@ -11,8 +11,5 @@ export const handleTestStart = async (values, functions) => {
     } else {
             testStart()
             navigate('/questions')
-        } else {
-            return
-        }
     }
 }
