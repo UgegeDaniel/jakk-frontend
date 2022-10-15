@@ -12,21 +12,29 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
     const classes = useStyles();
     const { subject, year, examtype } = testParams
     const navigate = useNavigate();
+
     useEffect(() => {
-        const data = async () => await fetchSubjects()
-        if (data) {
-            setSubjects(Object.values(data))
-        } else {
-            return
-        }
+        const fetchData = async()=>{
+           const data = await fetchSubjects()
+           if(data){
+              setSubjects(Object.values(data))
+           }else{
+             return
+           }
+         }
+      fetchData()
     }, [])
+
     useEffect(() => {
-        const data = async () => await fetchYears(subject)
-        if (data.length > 0) {
-            setYears(data.map((item)=> item.examyear))
-        } else {
-            return
-        }
+      const fetchData = async () => {
+        const data = await fetchYears(subject)
+        if(data.length > 0){
+          setYears(data.map((item)=> item.examyear))
+       }else{
+         return
+       }
+      }
+       fetchData()
     }, [subject])
     const values = { subject, year, testParams }
     const functions = { setNotification, setTestParams, setTimer, fetchQuestions, setQuestions, navigate }
