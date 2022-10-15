@@ -3,7 +3,7 @@ const options = {
     headers: { 'Content-type': 'application/json' },
 };
 
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://jakk-backend.herokuapp.com'
 
 export const login = async (setNotification, credentials, setStudent) => {
     const { email, password } = credentials
