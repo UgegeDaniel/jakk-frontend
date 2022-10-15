@@ -35,7 +35,7 @@ export const fetchYears = async (subject) => {
 
 export const fetchQuestions = async (subject = "chemistry", year = "2010", examType = "utme") => {
     try {
-        const response = await fetch(`${questionUrl}subject=${subject}&year={year}&type=${examType}`, options)
+        const response = await fetch(`${questionsUrl}subject=${subject}&year={year}&type=${examType}`, options)
         const { data } = await response.json()
         console.log(data)
         return data
