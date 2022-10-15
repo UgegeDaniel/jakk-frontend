@@ -36,8 +36,14 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
       }
        fetchData()
     }, [subject])
+    const testStart = () =>{
+    setTimer({ hour: 2, minute: 0, second: 0 })
+        const data = await fetchQuestions(testParams)
+        if (data?.length > 0) {
+            setQuestions(data)
+    }
     const values = { subject, year, testParams }
-    const functions = { setNotification, setTestParams, setTimer, fetchQuestions, setQuestions, navigate }
+    const functions = { testStart, navigate }
     const handleStart = handleTestStart(values, functions)
     return (
         <div>
