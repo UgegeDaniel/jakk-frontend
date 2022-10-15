@@ -14,16 +14,16 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
     const navigate = useNavigate();
     useEffect(() => {
         const data = fetchSubjects()
-        if (data?.length > 0) {
-            setSubjects(data)
+        if (data) {
+            setSubjects(Object.values(data))
         } else {
             return
         }
     }, [])
     useEffect(() => {
         const data = fetchYears(subject)
-        if (data?.length > 0) {
-            setYears(data)
+        if (data) {
+            setYears(Object.values(data))
         } else {
             return
         }
