@@ -13,7 +13,7 @@ const yearsUrl = `${baseUrl}metrics/years-available-for`
 
 export const fetchSubjects = async () => {
     try {
-        const response = await (subjectsUrl, options)
+        const response = await fetch(subjectsUrl)
         const { data } = await response.json()
         console.log(data)
         return data
