@@ -13,7 +13,7 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
     const { subject, year, examtype } = testParams
     const navigate = useNavigate();
     useEffect(() => {
-        const data = fetchSubjects()
+        const data = await fetchSubjects()
         if (data) {
             setSubjects(Object.values(data))
         } else {
@@ -21,7 +21,7 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
         }
     }, [])
     useEffect(() => {
-        const data = fetchYears(subject)
+        const data = await fetchYears(subject)
         if (data.length > 0) {
             setYears(data.map((item)=> item.examyear))
         } else {
