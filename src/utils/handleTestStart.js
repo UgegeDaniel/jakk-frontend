@@ -1,4 +1,4 @@
-export const handleTestStart = async (values, functions) => {
+export const handleTestStart =  (values, functions) => {
     const {navigate, testStart} = functions
     const {subject, year, testParams} = values 
     if (!subject) {
@@ -6,7 +6,7 @@ export const handleTestStart = async (values, functions) => {
     } else if (!year) {
         return
     } else {
-        await testStart()
+        testStart()
         navigate('/questions')
     }
 }
