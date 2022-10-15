@@ -38,13 +38,16 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
     }, [subject])
 
     const testStart = () =>{
-    setTimer({ hour: 2, minute: 0, second: 0 })
         const data = await fetchQuestions(testParams)
         if (data?.length > 0) {
+            setTimer({ hour: 2, minute: 0, second: 0 })
             setQuestions(data)
-      }
-       setTestParams({ subject: '', year: '', examtype: 'utme' })
+            setTestParams({ subject: '', year: '', examtype: 'utme' })
+        }else{
+           return
+        }
     }
+
     const values = { subject, year, testParams }
     const functions = { testStart, navigate }
     const handleStart = handleTestStart(values, functions)
