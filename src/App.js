@@ -13,12 +13,12 @@ function App() {
   const [marked, setMarked] = useState({})
   const [student, setStudent] = useState(true)
 
-  //useEffect(() => {
- //   const login = JSON.parse(localStorage.getItem('student'))
-  //  if (login) {
- //     setStudent(login)
-  //  }
-//  }, []) 
+  useEffect(() => {
+    const login = JSON.parse(localStorage.getItem('student'))
+    if (login) {
+      setStudent(login)
+   }
+ }, []) 
 
   return (
     <Router>
