@@ -1,4 +1,4 @@
-export const handleTestStart = (values, functions) => {
+export const handleTestStart = async (values, functions) => {
     const {setNotification, setTestParams, setTimer, fetchQuestions, setQuestions, navigate} = functions
     const {subject, year, testParams} = values 
     setTestParams({ subject: '', year: '', examtype: 'utme' })
@@ -10,7 +10,7 @@ export const handleTestStart = (values, functions) => {
         return
     } else {
         setTimer({ hour: 2, minute: 0, second: 0 })
-        const data = fetchQuestions(testParams)
+        const data = await fetchQuestions(testParams)
         if (data?.length > 0) {
             setQuestions(data)
             navigate('/questions')
