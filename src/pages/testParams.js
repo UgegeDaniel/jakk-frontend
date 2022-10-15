@@ -22,8 +22,8 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
     }, [])
     useEffect(() => {
         const data = fetchYears(subject)
-        if (data) {
-            setYears(Object.values(data))
+        if (data.length > 0) {
+            setYears(data.map((item)=> item.examyear))
         } else {
             return
         }
