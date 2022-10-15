@@ -1,7 +1,7 @@
 export const handleTestStart = async (values, functions) => {
     const {navigate, testStart} = functions
     const {subject, year, testParams} = values 
-    setTestParams({ subject: '', year: '', examtype: 'utme' })
+    
     if (!subject) {
         //setNotification({ show: true, msg: 'Please pick a subject', type: "danger" })
         return
