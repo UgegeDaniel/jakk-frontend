@@ -58,6 +58,3 @@ export const logout = (setStudent) => {
     setStudent({});
     return
 }
-
-//ELIennoh15@
-//elizabeth@gmail.com
