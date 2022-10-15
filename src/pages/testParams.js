@@ -37,7 +37,7 @@ const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNoti
        fetchData()
     }, [subject])
 
-    const testStart = () =>{
+    const testStart = async () =>{
         const data = await fetchQuestions(testParams)
         if (data?.length > 0) {
             setTimer({ hour: 2, minute: 0, second: 0 })
