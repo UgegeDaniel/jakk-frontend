@@ -7,7 +7,7 @@ const options = {
     method: "GET",
 };
 const baseUrl = 'https://questions.aloc.com.ng/api/'
-const questionsUrl = `${baseUrl}/v2/q/40?`
+const questionsUrl = `${baseUrl}v2/q/40?`
 const subjectsUrl = `${baseUrl}metrics/list-subjects`
 const yearsUrl = `${baseUrl}metrics/years-available-for`
 
