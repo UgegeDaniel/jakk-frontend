@@ -11,14 +11,14 @@ function App() {
   const [timer, setTimer] = useState({ hour: 0, minute: 0, second: 0 })
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
-  const [student, setStudent] = useState(null)
+  const [student, setStudent] = useState(true)
 
-  useEffect(() => {
-    const login = JSON.parse(localStorage.getItem('student'))
-    if (login) {
-      setStudent(login)
-    }
-  }, []) 
+  //useEffect(() => {
+ //   const login = JSON.parse(localStorage.getItem('student'))
+  //  if (login) {
+ //     setStudent(login)
+  //  }
+//  }, []) 
 
   return (
     <Router>
