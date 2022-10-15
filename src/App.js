@@ -37,7 +37,7 @@ function App() {
               <Route exact path="/results" element={student ? <Results attempts={attempts} marked={marked} /> : <Navigate to='/login' />} />
               <Route exact path="/checkout" element={student ? <Checkout setNotification={setNotification} /> : <Navigate to='/login' />} />
               <Route exact path="/review" element={student ? <Review marked={marked} /> : <Navigate to='/login' />} />
-              <Route exact path="/login" element={!student ? <Home loginRoute={true} setNotification={setNotification} setStudent={setStudent} /> : <Navigate to='/' />} />
+              {*<Route exact path="/login" element={!student ? <Home loginRoute={true} setNotification={setNotification} setStudent={setStudent} /> : <Navigate to='/' />} />*}
               {/* <Route exact path="/signup" element={!student ? <Home setNotification={setNotification} setStudent={setStudent} /> : <Navigate to='/' />} /> */}
             </Routes>
           </div>
