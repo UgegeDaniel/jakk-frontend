@@ -179,7 +179,26 @@ const App = () => {
                 : <Navigate to='/' />} />
               {/**TEST QUESTIONS*/}
               <Route exact path="/questions" element={student ?
-                <Questions questionTopProps={questionTopProps} optionsProps={optionsProps} navProps={navProps} submitHandler={submitHandler}/>
+        <div className={classes.mc}>
+            {questions.length === 0 ? <Skeleton />
+                :
+                (<Paper>
+                    <Container>
+                        <Timer timer={timer} setTimer={setTimer} />
+                        <Card elevation={3}>
+                            <CardContent>
+                                <QuestionCardTop questionTopProps={questionTopProps} />
+                                <Options optionsProps={optionsProps} />
+                            </CardContent>
+                            <QuestionNav navProps={navProps} />
+                            <Link to="/results">
+                                <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit" onClick={submitHandler}>Finish and Submit</Button>
+                            </Link>
+                        </Card>
+                    </Container>
+                </Paper>)
+            }
+        </div>
                 : <Navigate to='/' />} />
               {/**TEST RESULTS*/}
               <Route exact path="/results" element={student ?
