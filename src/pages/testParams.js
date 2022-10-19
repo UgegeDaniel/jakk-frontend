@@ -7,49 +7,75 @@ import { fetchQuestions, fetchSubjects, fetchYears } from '../api'
 import { handleTestStart } from '../utils'
 
 const TestParams = ({ setTimer, testParams, setTestParams, setQuestions, setNotification }) => {
-    const [subjects, setSubjects] = useState()
+    const [subjects, setSubjects] = useState([])
     const [years, setYears] = useState([])
     const classes = useStyles();
     const { subject, year, examtype } = testParams
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchData = async()=>{
-          const data = await fetchSubjects()
-          if(data){
-              setSubjects(Object.values(data))
-          }else{
-            return
-          }
+        const fetchData = async () => {
+            const data = await fetchSubjects()
+            const arrayOfData = Object.values(data)
+            if (data && subjects.length === 0) {
+                setSubjects(arrayOfData)
+            } else {
+                return
+            }
         }
-     fetchData()
-    }, [])
+        fetchData()
+        console.log(subjects)
+    }, [subjects])
+
 
     useEffect(() => {
-      const fetchData = async () => {
-        const data = await fetchYears(subject)
-        if(data.length > 0){
-          setYears(data.map((item)=> item.examyear))
-       }else{
-         return
-       }
-      }
-       fetchData()
+        if (subjects.length > 0 && !subject) {
+            setNotification({ show: true, msg: 'Please pick a subject', type: "danger" })
+            return
+        } else if (years.length > 0 && !year) {
+            setNotification({ show: true, msg: 'Please pick a year', type: "danger" })
+            return
+        }else{
+            return
+        }
+    }, [subject, year, setNotification, subjects, years,])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data = await fetchYears(subject)
+            if (subject && data.length > 0) {
+                setYears(data.map((item) => item.examyear))
+            } else {
+                return
+            }
+        }
+        fetchData()
     }, [subject])
 
-    const testStart = async () =>{
-        const data = await fetchQuestions(testParams)
-        if (data?.length > 0) {
+
+     const handleTestStart = async (values, functions) => {
+        const {  setTestParams, setTimer, fetchQuestions, setQuestions, navigate } = functions
+        const { testParams, subjects,  years} = values
+        const { subject, year, } = testParams
+        setTestParams({ subject: '', year: '', examtype: 'utme' })
+        if (subjects.length > 0 && !subject) {
+            return
+        } else if (years.length > !year) {
+            return
+        } else {
             setTimer({ hour: 2, minute: 0, second: 0 })
-            setQuestions(data)
-            setTestParams({ subject: '', year: '', examtype: 'utme' })
-        }else{
-           return
+            const data = await fetchQuestions(testParams)
+            if (data?.length > 0) {
+                setQuestions(data)
+                navigate('/questions')
+            } else {
+                return
+            }
         }
     }
 
-    const values = { subject, year, testParams }
-    const functions = { testStart, navigate }
+    const values = { testParams, subjects,  years }
+    const functions = { setTestParams, setTimer, fetchQuestions, setQuestions, navigate }
     const handleStart = handleTestStart(values, functions)
     return (
         <div>

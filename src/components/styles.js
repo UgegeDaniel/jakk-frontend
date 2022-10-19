@@ -11,8 +11,7 @@ export const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: 'Quicksand',
-        //remember to import this in your css file
+        fontFamily: 'Poppins',
         fontWeightLight: 400,
         fontWeightRegular: 500,
         fontWeightMedium: 600,
@@ -51,7 +50,12 @@ export const useStyles = makeStyles((theme) => ({
     btn: {
         borderRadius: "15px"
     },
-
+    flex: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5px'
+    },
     mc: {
         margin: '10px auto', display: 'block', width: 'auto'
     },
@@ -68,7 +72,7 @@ export const useStyles = makeStyles((theme) => ({
         marginLeft: 20
     },
     imgPaper: {
-        margin: '10px auto', paddingLeft: '100px', paddingTop: '80px', paddingBottom: '80px', display: 'block', height: '100%'
+       display: "flex",
     },
     title: {
         textDecoration: 'underline', marginBottom: 20, padding: theme.spacing(3)
@@ -95,7 +99,7 @@ export const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(2), marginRight: 20
     },
     notification: {
-        position: "fixed", left: '20vw', marginTop: '20px', top: '10vh'
+        position: "fixed", left: '20vw', marginTop: '20px', top: '10vh', zImdex: 3
     },
 
     avatar1: {
@@ -158,7 +162,7 @@ export const useStyles = makeStyles((theme) => ({
         top: '10vh',
         right: '2vw'
     },
-    toolbar: theme.mixins.toolbar, 
+    toolbar: theme.mixins.toolbar,
 }))
 
 export const orangeAvatar = {

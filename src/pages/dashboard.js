@@ -10,14 +10,14 @@ const Dashboard = ({ marked, student }) => {
     const classes = useStyles();
     const [userHistory, setUserHistory] = useState([student?.history])
     const percentage = ((marked?.correct?.length / 40) * 100).toFixed(2)
-    useEffect(() => {
-        if (!marked || !marked?.correct?.length) {
-            return
-        }
-        else {
-            setUserHistory([...userHistory, { id: marked?.timeTaken, subject: marked?.subject, scores: percentage, timeTaken: marked?.timeTaken }])
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (!marked || !marked?.correct?.length) {
+    //         return
+    //     }
+    //     else {
+    //         setUserHistory([...userHistory, { id: marked?.timeTaken, subject: marked?.subject, scores: percentage, timeTaken: marked?.timeTaken }])
+    //     }
+    // }, [])
 
     return (
         <div className={classes.mc}>
@@ -38,7 +38,7 @@ const Dashboard = ({ marked, student }) => {
                         {/**CARD FOOTER */}
                         <CardActions>
                             <Link to="/testparams">
-                                <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit">
+                                <Button className={classes.mc} variant='contained' color="secondary" size="small">
                                     Take A Test
                                 </Button>
                             </Link>

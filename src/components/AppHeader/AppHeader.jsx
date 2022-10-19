@@ -6,7 +6,6 @@ import { jamb, waec, neco } from '../../assests'
 import { logout } from '../../api/auth'
 const AppHeader = ({ setStudent, student }) => {
     const classes = useStyles();
-
     return (
         <div>
             <AppBar color="primary">
@@ -30,7 +29,7 @@ const AppHeader = ({ setStudent, student }) => {
             </div>
             <div className={classes.toolbar}>
                 {
-                    student && <div className={classes.mobile}>
+                    student && <div className={classes.flex}>
                         <Chip className={classes.userChip} avatar={<Avatar>{<FaUser />}</Avatar>} variant='default' label={`${student?.userName}`} color="secondary" />
                         <Button className={classes.btn} onClick={() => logout(setStudent)} startIcon={<FaDoorOpen />} variant='contained' color="secondary" size="small" type="submit">
                             Log out

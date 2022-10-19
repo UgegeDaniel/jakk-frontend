@@ -9,14 +9,14 @@ const Notification = ({ notification, setNotification }) => {
     useEffect(()=> {
         const cleanUp = setTimeout(()=>{
             setNotification({...notification, show: false})
-        }, 3000)
+        }, 500000)
         return () => clearTimeout(cleanUp)
     })
     const danger = {
-        backgroundColor: red[500]
+        backgroundColor: "#FF6961"
     }
     const success = {
-        backgroundColor: lightGreen[500]
+        backgroundColor: "#77DD77"
     }
     return (
         <div className={classes.notification}>

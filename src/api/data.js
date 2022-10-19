@@ -2,7 +2,7 @@ const options = {
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'AccessToken': process.env.ACCESS_TOKEN
+        'AccessToken': 'ALOC-0cf7527417b13cc77fdd',
     },
     method: "GET",
 };
@@ -13,9 +13,8 @@ const yearsUrl = `${baseUrl}/metrics/years-available-for`
 
 export const fetchSubjects = async () => {
     try {
-       const response = await fetch(subjectsUrl)
+        const response = await fetch(subjectsUrl)
         const { data } = await response.json()
-        console.log(data)
         return data
     } catch (error) {
         console.log(error)
@@ -34,10 +33,11 @@ export const fetchYears = async (subject) => {
 }
 
 export const fetchQuestions = async (subject = "chemistry", year = "2010", examType = "utme") => {
+    const url = `${questionsUrl}subject=${subject}&year=${year}&type=${examType}`
     try {
-        const response = await fetch(`${questionsUrl}subject=${subject}&year={year}&type=${examType}`, options)
-        const { data } = await response.json()
-        console.log(data)
+        const response = await fetch(url, options)
+        const {data}  = await response.json()
+        console.log({data, url})
         return data
     } catch (error) {
         console.log(error)
