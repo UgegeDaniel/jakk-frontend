@@ -179,7 +179,7 @@ const App = () => {
                 : <Navigate to='/' />} />
               {/**TEST QUESTIONS*/}
               <Route exact path="/questions" element={student ?
-                <Questions questionTopProps={questionTopProps} optionProps={optionProps} navProps={navProps} submitHandler={submitHandler}/>
+                <Questions questionTopProps={questionTopProps} optionsProps={optionsProps} navProps={navProps} submitHandler={submitHandler}/>
                 : <Navigate to='/' />} />
               {/**TEST RESULTS*/}
               <Route exact path="/results" element={student ?
