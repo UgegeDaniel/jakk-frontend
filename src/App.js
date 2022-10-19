@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 //REACT-ROUTER-DOM
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 //MATERIAL UI
-import { Container, ThemeProvider, Button, CardContent, Typography,  Paper, Grid, Card,  ButtonGroup } from '@material-ui/core'
+import { Container, ThemeProvider, Button, CardContent, Typography, Paper, Grid, Card, ButtonGroup } from '@material-ui/core'
 import PaystackPop from '@paystack/inline-js'
 //FILES
 //  1  . HOOKS
@@ -21,72 +21,15 @@ import TestParams from './TestParams'
 import Dashboard from './Dashboard'
 import Hero from './Hero'
 import Form from './Form'
-
-//DUMMY DATA 
-import dummyData from './dummyData'
-// const dummyStudent = {
-//   userName: 'JohnDoe',
-//   email: "johnDoe@example.com",
-//   history: [{
-//     subject: 'Biology',
-//     score: 56,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Physics',
-//     score: 78,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Biology',
-//     score: 75,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Chemistry',
-//     score: 80,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Biology',
-//     score: 67,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Chemistry',
-//     score: 56,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Physics',
-//     score: 45,
-//     timeTaken: new Date().toISOString()
-//   },
-//   {
-//     subject: 'Chemistry',
-//     score: 70,
-//     timeTaken: new Date().toISOString()
-//   },  {
-//     subject: 'Physics',
-//     score: 82,
-//     timeTaken: new Date().toISOString()
-//   },  {
-//     subject: 'Biology',
-//     score: 50,
-//     timeTaken: new Date().toISOString()
-//   },
-// ]
-// }
-
-const dummyStudent = null
+import { fetchQuestions } from './api'
 
 
 const App = () => {
   //STATES
-  const [student, setStudent] = useState(dummyStudent)
+  const [student, setStudent] = useState(null)
   const [testParams, setTestParams] = useState({ subject: '', year: '', examtype: 'utme' })
   const [notification, setNotification] = useState({ show: true, msg: 'Testing 123', type: 'danger' })
-  const [questions, setQuestions] = useState(dummyData);
+  const [questions, setQuestions] = useState([]);
   const [timer, setTimer] = useState({ hour: 0, minute: 0, second: 0 })
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
@@ -133,31 +76,43 @@ const App = () => {
       setStudent(login)
     }
   }, [])
+  useEffect(() => {
+    const { subject, year, examtype } = testParams
+    if (subject && year) {
+      const fetchData = async () => {
+        const data = await fetchQuestions(subject, year, examtype)
+        if (data?.length > 0) {
+          setQuestions(data)
+          setTestParams({ subject: '', year: '', examtype: 'utme' })
+          setTimer({ hour: 2, minute: 0, second: 0 })
+        }
+        else {
+          return
+        }
+      }
+      fetchData()
+    }}, [testParams])
+    
   const classes = useStyles();
-
   const percentage = ((marked?.correct?.length / 40) * 100).toFixed(2)
-  // useEffect(() => {
-  //   if (!marked || !marked?.correct?.length) {
-  //     return
-  //   }
-  //   else {
-  //     setUserHistory([...userHistory, { id: marked?.timeTaken, subject: marked?.subject, scores: percentage, timeTaken: marked?.timeTaken }])
-  //   }
-  // }, [])
-
   const noClick = () => {
     return
   }
   const reviewOptionProps = { option, noClick, attempts, questionIndex }
 
+  // const STATES = {student, testParams, notification, questions, timer, attempts, marked, questionIndex, attemptedNumbers, attemptedAnswers, selectedAnswers, reviewResults, reviewIndex, choices, wrongChoice, currentQuestion, answers}
+
+  // useEffect(() => {
+  //   console.log({STATES})
+  // }, [STATES])
+
   return (
     < Router >
-      {/* <Route exact path="/signup" element={!student ? <Home setNotification={setNotification} setStudent={setStudent} /> : <Navigate to='/' />} /> */}
       <ThemeProvider theme={theme}>
         <Container>
           <AppHeader setStudent={setStudent} student={student} />
           {notification.show &&
-            <Notification notification={notification} setNotification={setNotification} setQuestions={setQuestions}/>
+            <Notification notification={notification} setNotification={setNotification} />
           }
           <div>
             <Routes>
@@ -165,7 +120,7 @@ const App = () => {
               <Route exact path="/" element={!student ?
                 <Grid container spacing={3} justifyContent="center" align="center" >
                   <Hero />
-                  <Form setNotification={setNotification} setStudent={setStudent}/>
+                  <Form setNotification={setNotification} setStudent={setStudent} />
                 </Grid>
                 : <Navigate to='/dashboard' />} />
               {/**DASHBOARD */}
@@ -174,30 +129,30 @@ const App = () => {
                 : <Navigate to='/' />} />
               {/**TEST PARAMETERS */}
               <Route exact path="/params" element={student ?
-                <TestParams setNotification={setNotification} setTimer={setTimer} testParams={testParams} setTestParams={setTestParams}/>
+                <TestParams setNotification={setNotification} setTimer={setTimer} testParams={testParams} setTestParams={setTestParams} />
                 : <Navigate to='/' />} />
               {/**TEST QUESTIONS*/}
               <Route exact path="/questions" element={student ?
-        <div className={classes.mc}>
-            {questions.length === 0 ? <Skeleton />
-                :
-                (<Paper>
-                    <Container>
+                <div className={classes.mc}>
+                  {questions.length === 0 ? <Skeleton />
+                    :
+                    (<Paper>
+                      <Container>
                         <Timer timer={timer} setTimer={setTimer} />
                         <Card elevation={3}>
-                            <CardContent>
-                                <QuestionCardTop questionTopProps={questionTopProps} />
-                                <Options optionsProps={optionsProps} />
-                            </CardContent>
-                            <QuestionNav navProps={navProps} />
-                            <Link to="/results">
-                                <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit" onClick={submitHandler}>Finish and Submit</Button>
-                            </Link>
+                          <CardContent>
+                            <QuestionCardTop questionTopProps={questionTopProps} />
+                            <Options optionsProps={optionsProps} />
+                          </CardContent>
+                          <QuestionNav navProps={navProps} />
+                          <Link to="/results">
+                            <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit" onClick={submitHandler}>Finish and Submit</Button>
+                          </Link>
                         </Card>
-                    </Container>
-                </Paper>)
-            }
-        </div>
+                      </Container>
+                    </Paper>)
+                  }
+                </div>
                 : <Navigate to='/' />} />
               {/**TEST RESULTS*/}
               <Route exact path="/results" element={student ?
@@ -271,7 +226,7 @@ const App = () => {
                     </Container>
                   </Paper>
                 </div>
-                : <Navigate to='/' />} />    
+                : <Navigate to='/' />} />
             </Routes>
           </div>
         </Container>

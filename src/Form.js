@@ -15,10 +15,10 @@ const Form = ({ setNotification, setStudent }) => {
     const classes = useStyles()
     const handleAuth = async (e) => {
         e.preventDefault();
-        setPath('/dashboard')
         setStudent(dummyStudent)
         if (isLogin) {
             await login(setNotification, credentials, setStudent)
+            setPath('/dashboard')
           }
           !isLogin && await signup(setNotification, credentials, setStudent)
         !isLogin && setNotification({ show: true, type: "success", msg: 'Congratualations Sign up Successfull !!!' })
