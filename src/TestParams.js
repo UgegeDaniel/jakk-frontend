@@ -42,12 +42,12 @@ const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTe
 
   const handleStart = async (e) => {
     if (subject && year) {
-      setPath('/questions')
-      setTimer({ hour: 2, minute: 0, second: 0 })
       const data = await fetchQuestions(subject, year, examtype)
       if (data?.length > 0) {
         setQuestions(data)
         setTestParams({ subject: '', year: '', examtype: 'utme' })
+        setPath('/questions')
+        setTimer({ hour: 2, minute: 0, second: 0 })
       } else {
         return
       }
