@@ -33,7 +33,7 @@ export const fetchYears = async (subject) => {
 }
 
 export const fetchQuestions = async (subject = "chemistry", year = "2010", examType = "utme") => {
-    const url = `${questionsUrl}subject=${subject}&year=${year}&type=${examType}`
+    const url = `https://questions.aloc.com.ng/api/v2/m?subject=english&year=2003&type=utme`
     try {
         const response = await fetch(url, options)
         const {data}  = await response.json()
