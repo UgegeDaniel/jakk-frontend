@@ -3,7 +3,7 @@ import {  useStyles } from './components/styles'
 import { BouncingLoader, Param } from './components'
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { fetchQuestions, fetchSubjects, fetchYears } from './api'
+import {  fetchSubjects, fetchYears } from './api'
 
 const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTestParams }) => {
   const classes = useStyles()

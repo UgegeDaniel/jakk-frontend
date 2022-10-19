@@ -4,24 +4,25 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 //MATERIAL UI
 import { Container, ThemeProvider, Button, CardContent, Typography, Paper, Grid, Card, ButtonGroup } from '@material-ui/core'
-import PaystackPop from '@paystack/inline-js'
+// import PaystackPop from '@paystack/inline-js'
+// import { payWithPaystack } from './utils'
 //FILES
 //  1  . HOOKS
 import { theme, useStyles } from './components/styles'
 //  2  .FUNCTIONS
-import { isPresent, handleChoice, handleSubmit } from './utils'
+import { isPresent } from './utils'
 //  3.  COMPONENTS
-import { AppHeader, Notification, Skeleton } from './components'
+import { AppHeader, Notification } from './components'
 //ASSESTS
-import { QuestionCardTop, Options, QuestionNav, Timer } from './components/Question'
+import { QuestionCardTop, Options } from './components/Question'
 //PAGES
 // import { Question, Home, Dashboard, TestParams, Results, Review, Checkout } from './pages'
-import { payWithPaystack } from './utils'
 import TestParams from './TestParams'
 import Dashboard from './Dashboard'
 import Hero from './Hero'
 import Form from './Form'
 import { fetchQuestions } from './api'
+import Question from './Questions'
 
 
 const App = () => {
@@ -34,10 +35,6 @@ const App = () => {
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
   const [questionIndex, setQuestionIndex] = useState(0)
-  const [attemptedNumbers, setAttemptedNumbers] = useState([])
-  const [attemptedAnswers, setAttemptedAnswers] = useState([])
-  const [selectedAnswers, setSelectedAnswers] = useState([])
-
   const reviewResults = {
     failedNumbers: marked?.wrong?.length > 0 ? marked?.wrong?.map((mark) => mark.number) : [],
   }
@@ -53,21 +50,14 @@ const App = () => {
 
   //CONSTANTS
   const currentQuestion = questions.length > 0 && questions[questionIndex]
-  const answers = questions?.map((question) => question.answer)
   const { question, option, image: questionImage } = currentQuestion
-  const answeredNumber = isPresent(attemptedNumbers, questionIndex + 1) ? 'contained' : 'text'
   //FUNCTION VALUES -- CHOICE HANDLER
-  const setters = { setSelectedAnswers, setAttemptedNumbers, setAttemptedAnswers, setAttempts }
-  const values = { attemptedNumbers, questionIndex, attemptedAnswers, selectedAnswers, attempts }
-  const choiceHandler = (e) => handleChoice(e, setters, values)
+  const [attemptedNumbers, setAttemptedNumbers] = useState([])
   //FUNCTION VALUES -- SUBMIT HANDLER 
-  const handleSetters = { setTimer }
-  const handleValues = { timer, attempts, answers, testParams, student }
-  const submitHandler = () => { setMarked(handleSubmit(handleSetters, handleValues)) }
   //COMPONENT PROPS
+  const answeredNumber = isPresent(attemptedNumbers, questionIndex + 1) ? 'contained' : 'text'
   const questionTopProps = { answeredNumber, questionIndex, questionImage, question }
-  const optionsProps = { option, choiceHandler, attempts, questionIndex }
-  const navProps = { setQuestionIndex, questionIndex, questions, attemptedNumbers, answeredNumber }
+
   const { correct, wrong } = marked
 
   useEffect(() => {
@@ -91,8 +81,9 @@ const App = () => {
         }
       }
       fetchData()
-    }}, [testParams])
-    
+    }
+  }, [testParams])
+
   const classes = useStyles();
   const percentage = ((marked?.correct?.length / 40) * 100).toFixed(2)
   const noClick = () => {
@@ -100,11 +91,6 @@ const App = () => {
   }
   const reviewOptionProps = { option, noClick, attempts, questionIndex }
 
-  // const STATES = {student, testParams, notification, questions, timer, attempts, marked, questionIndex, attemptedNumbers, attemptedAnswers, selectedAnswers, reviewResults, reviewIndex, choices, wrongChoice, currentQuestion, answers}
-
-  // useEffect(() => {
-  //   console.log({STATES})
-  // }, [STATES])
 
   return (
     < Router >
@@ -133,26 +119,7 @@ const App = () => {
                 : <Navigate to='/' />} />
               {/**TEST QUESTIONS*/}
               <Route exact path="/questions" element={student ?
-                <div className={classes.mc}>
-                  {questions.length === 0 ? <Skeleton />
-                    :
-                    (<Paper>
-                      <Container>
-                        <Timer timer={timer} setTimer={setTimer} />
-                        <Card elevation={3}>
-                          <CardContent>
-                            <QuestionCardTop questionTopProps={questionTopProps} />
-                            <Options optionsProps={optionsProps} />
-                          </CardContent>
-                          <QuestionNav navProps={navProps} />
-                          <Link to="/results">
-                            <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit" onClick={submitHandler}>Finish and Submit</Button>
-                          </Link>
-                        </Card>
-                      </Container>
-                    </Paper>)
-                  }
-                </div>
+                <Question timer={timer} setTimer={setTimer} questions={questions} testParams={testParams} student={student} setMarked={setMarked} attempts={attempts} setAttempts={setAttempts}/>
                 : <Navigate to='/' />} />
               {/**TEST RESULTS*/}
               <Route exact path="/results" element={student ?

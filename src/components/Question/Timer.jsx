@@ -2,13 +2,12 @@ import {useEffect} from 'react'
 import { Button, ButtonGroup } from '@material-ui/core'
 import { useStyles } from '../styles'
 
-const Timer = ({timer, setTimer, setSubmitted }) => {
+const Timer = ({timer, setTimer }) => {
     const { hour, minute, second } = timer
     useEffect(() => {
         const cleanUp = setInterval(() => {
             if (timer.hour === 0 && timer.minute === 0 && timer.second === 0) {
                 setTimer({ hour: 0, minute: 0, second: 0 })
-                setSubmitted(true)
                 return
             }
             else if (timer.minute === 0) {
@@ -23,7 +22,7 @@ const Timer = ({timer, setTimer, setSubmitted }) => {
 
         }, 1000)
         return () => clearInterval(cleanUp)
-    }, [timer, hour, minute, second, setTimer, setSubmitted])
+    }, [timer, hour, minute, second, setTimer])
     const classes = useStyles();
     return (
         <div>
