@@ -21,7 +21,6 @@ import TestParams from './TestParams'
 import Dashboard from './Dashboard'
 import Hero from './Hero'
 import Form from './Form'
-import Questions from './Questions'
 
 //DUMMY DATA 
 import dummyData from './dummyData'
