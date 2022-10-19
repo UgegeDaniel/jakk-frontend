@@ -41,12 +41,12 @@ const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTe
   }, [subject, year])
 
   const handleStart = async (e) => {
-    if (subject && year) {
+    // if (subject && year) {
     setPath('/questions')
-      } else {
-        setNotification({ show: true, msg: 'please pick a subject and a year', type: "danger" })
-        return
-      }
+      // } else {
+      //   setNotification({ show: true, msg: 'please pick a subject and a year', type: "danger" })
+      //   return
+      // }
   }
   return (
     <div>
@@ -86,7 +86,7 @@ const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTe
               <Button className={classes.mc} variant='contained' color="primary" size="small" >Go Back To Dashboard</Button>
             </Link>
             <Link to={path}>
-              <Button className={classes.mc} onClick={handleStart} variant='contained' color="secondary" size="small">Take Test</Button>
+              <Button className={classes.mc} onClick={handleStart} variant='contained' color="secondary" size="small">Double click to Take Test</Button>
             </Link>
           </div>
         </Container>

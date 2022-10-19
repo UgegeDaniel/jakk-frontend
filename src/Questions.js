@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom'
 import { isPresent, handleChoice, handleSubmit } from './utils'
 import { useState } from 'react'
 
-const Questions = ({ timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts }) => {
+const Questions = ({ timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts, setAttemptedNumbers, attemptedNumbers }) => {
     const [questionIndex, setQuestionIndex] = useState(0)
     const currentQuestion = questions.length > 0 && questions[questionIndex]
 
-    const [attemptedNumbers, setAttemptedNumbers] = useState([])
     //this array holds the numbers a user has attempted.
     const [attemptedAnswers, setAttemptedAnswers] = useState([])
     //this array holds the option a user has clicked.

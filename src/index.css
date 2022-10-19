@@ -4,11 +4,13 @@ body {
 a{
     text-decoration: none;
 }
-
+.bouncing-balls-container{
+    max-width: 100%;
+}
 .bouncing-balls {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     width: 100px;
     height: 100px;
     margin-top: 5rem;
