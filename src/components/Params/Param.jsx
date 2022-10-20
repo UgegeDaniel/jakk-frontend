@@ -4,9 +4,9 @@ const Param = ({ items, testParams, setTestParams, className, feild }) => {
     const [clicked, setClicked ] = useState(false)
 const onClickHandler = (e) => {
         setTestParams({ ...testParams, [feild]: e.target.textContent })
-        if(e.target.textContent === testParams.[feild]){
-setClicked(true)
-}
+        if(e.target.textContent){
+          setClicked(true)
+         }
     }
     return (
         <ul>
