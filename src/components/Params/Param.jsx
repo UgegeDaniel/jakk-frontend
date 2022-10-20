@@ -1,13 +1,17 @@
 import { Button } from '@material-ui/core'
+import {useState} from 'react'
 const Param = ({ items, testParams, setTestParams, className, feild }) => {
-    const onClickHandler = (e) => {
+    const [clicked, setClicked ] = useState(false)
+const onClickHandler = (e) => {
         setTestParams({ ...testParams, [feild]: e.target.textContent })
-        console.log({ testParams, feild })
+        if(e.target.textContent === testParams.[feild]){
+setClicked(true)
+}
     }
     return (
         <ul>
             {items?.length !== 0 && items?.map((item, index) =>
-                <Button key={index} value={item} className={className} onClick={onClickHandler} variant='contained' color={index % 2 === 1 ? "primary" : "secondary"} size="small">
+                <Button key={index} value={item} className={className} onClick={onClickHandler} variant= {clicked ? 'contained' : 'outlined'} color={index % 2 === 1 ? "primary" : "secondary"} size="small">
                     {item}
                 </Button>
             )}
