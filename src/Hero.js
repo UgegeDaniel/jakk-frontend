@@ -1,19 +1,20 @@
-import { Container, Paper, Grid,} from '@material-ui/core'
-import {  useStyles } from './components/styles'
-import { classSvg, studySvg, examsSvg } from './assests'
-const data = [classSvg]
+import { Container, Paper, Grid, Typography } from '@material-ui/core'
+import { useStyles } from './components/styles'
+import { classSvg } from './assests'
+// const data = [classSvg]
 const Hero = () => {
-    const classes = useStyles()
+  const classes = useStyles()
   return (
     <Grid item xs={12} sm={6}>
-    <Container>
-      <Paper className={classes.imgPaper}>
-        {data.map((item)=>(
+      <Container className={classes.imgContainer}>
+        <Paper className={classes.imgPaper}>
+          {/* {data.map((item)=>(
         <Container className={classes.topImg}><img className={classes.img} src={item} alt={item}/></Container>
-        ))}
-      </Paper>
-    </Container>
-  </Grid>
+        ))} */}
+          <Typography className={classes.heroText} color="secondary">JAKK is a simple full stack application geared towards aiding students sitting for various O - Level Examinations with a progressive and accessible means of practicising. Students are required to sign up for a free account, take tests in over 17 subjects as their records over time are being displayed on a chart for a visual representation of their progress.</Typography>
+        </Paper>
+      </Container>
+    </Grid>
   )
 }
 

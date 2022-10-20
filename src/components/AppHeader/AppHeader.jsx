@@ -22,7 +22,6 @@ const AppHeader = ({ setStudent, student }) => {
                             <div className={classes.logo} key={index}><img className={classes.logoStyle} src={logo} alt='exam body logo' /></div>
                         ))}
                     </div>
-
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbar}>

@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Chip, Avatar } from '@material-ui/core'
-import {red, lightGreen} from '@material-ui/core/colors'
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa'
 import { useStyles } from '../styles'
 const Notification = ({ notification, setNotification }) => {
@@ -9,7 +8,7 @@ const Notification = ({ notification, setNotification }) => {
     useEffect(()=> {
         const cleanUp = setTimeout(()=>{
             setNotification({...notification, show: false})
-        }, 500000)
+        }, 3000)
         return () => clearTimeout(cleanUp)
     })
     const danger = {
