@@ -8,11 +8,10 @@ a{
 .bouncing-balls {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     width: 100px;
     height: 100px;
     margin-top: 5rem;
-    margin-left: -2rem;
 }
 
 .bouncing-balls div {
