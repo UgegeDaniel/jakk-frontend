@@ -3,6 +3,9 @@ import {useState} from 'react'
 const Param = ({ items, testParams, setTestParams, className, feild }) => {
     const [clicked, setClicked ] = useState(null)
 const onClickHandler = (e, index) => {
+if(feild === 'subject'){
+ setTestParams({...testParams, subject: e.target.textContent, year: ''})
+}
         setTestParams({ ...testParams, [feild]: e.target.textContent })
 setClicked(index)
     }
