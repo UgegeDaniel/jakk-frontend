@@ -21,7 +21,7 @@ const App = () => {
   const [student, setStudent] = useState(null)
   const [testParams, setTestParams] = useState({ subject: '', year: '', examtype: 'utme' })
   const [notification, setNotification] = useState({ show: false, msg: '', type: 'danger' })
-  const [questions, setQuestions] = useState(dummyData);
+  const [questions, setQuestions] = useState([]);
   const [timer, setTimer] = useState({ hour: 0, minute: 0, second: 0 })
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
