@@ -4,7 +4,7 @@ import { red, orange, purple } from '@material-ui/core/colors'
 export const theme = createTheme({
     palette: {
         primary: {
-            main: '#D9F7F5'
+            main: '#324B4A'
         },
         secondary: {
             main: '#2A928F'
