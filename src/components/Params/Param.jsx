@@ -9,7 +9,7 @@ setClicked(index)
     return (
         <ul>
             {items?.length !== 0 && items?.map((item, index) =>
-                <Button key={index} value={item} className={className} onClick={() => onClickHandler(e, index)} variant= {clicked === index ? 'contained' : 'outlined'} color={index % 2 === 1 ? "primary" : "secondary"} size="small">
+                <Button key={index} value={item} className={className} onClick={(e) => onClickHandler(e, index)} variant= {clicked === index ? 'contained' : 'outlined'} color={index % 2 === 1 ? "primary" : "secondary"} size="small">
                     {item}
                 </Button>
             )}
