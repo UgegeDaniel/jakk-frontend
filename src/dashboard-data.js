@@ -21,16 +21,22 @@ export const options = {
 }
 
 export const getAverage = (student) => {
-    const scores = student?.history?.map((data) => data?.score)
+    const scores = student?.history?.length === 0 ? student?.history?.map((data) => data?.score) : []
     const size = scores?.length
-    const total = (scores) => {
-        const total = scores.reduce((total, score) => {
-            total += score;
+    if (student?.history?.length === 0) {
+        return 0
+    } else {
+        const total = (scores) => {
+            if(scores.length === 0){
+                return
+            }
+            const total = scores.reduce((total, score) => {
+                total += score;
+                return total
+            }, 0)
             return total
-        }, 0)
-        return total
+        }
+        const averageScore = (total(scores) / size).toFixed(2)
+        return { averageScore, scores }
     }
-    const averageScore = (total(scores) / size).toFixed(2)
-    return {averageScore, scores}
-
 }
