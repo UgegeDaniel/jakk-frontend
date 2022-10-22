@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import {  fetchSubjects, fetchYears } from './api'
 
-const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTestParams }) => {
+const TestParams = ({ testParams, setTestParams }) => {
   const classes = useStyles()
   const { subject, year, examtype } = testParams
   const [subjects, setSubjects] = useState([])
@@ -41,12 +41,7 @@ const TestParams = ({ setTimer, setQuestions, setNotification, testParams, setTe
   }, [subject, year])
 
   const handleStart = async (e) => {
-    // if (subject && year) {
     setPath('/questions')
-      // } else {
-      //   setNotification({ show: true, msg: 'please pick a subject and a year', type: "danger" })
-      //   return
-      // }
   }
   return (
     <div>
