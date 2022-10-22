@@ -55,6 +55,6 @@ export const updateHistory = async (email, newData) => {
 }
 export const logout = (setStudent) => {
     localStorage.removeItem('student')
-    setStudent({});
+    setStudent(null);
     return
 }
