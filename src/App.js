@@ -20,6 +20,7 @@ const App = () => {
   const [testParams, setTestParams] = useState({ subject: '', year: '', examtype: 'utme' })
   const [notification, setNotification] = useState({ show: false, msg: '', type: 'danger' })
   const [questions, setQuestions] = useState([]);
+  const [reviewQuestions, setReviewQuestions] = useState([])
   const [timer, setTimer] = useState({ hour: 0, minute: 0, second: 0 })
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
@@ -39,6 +40,7 @@ const App = () => {
         const data = await fetchQuestions(subject, year, examtype)
         if (data?.length > 0) {
           setQuestions(data)
+          setReviewQuestions(data)
           setTestParams({ subject: '', year: '', examtype: 'utme' })
           setTimer({ hour: 2, minute: 0, second: 0 })
         }
@@ -75,7 +77,7 @@ const App = () => {
                 <Results marked={marked} attempts={attempts} />
                 : <Navigate to='/' />} />
               <Route exact path="/review" element={student ?
-                <Review marked={marked} questions={questions} />
+                <Review marked={marked} reviewQuestions={reviewQuestions} />
                 : <Navigate to='/' />} />
             </Routes>
           </div>

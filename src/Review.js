@@ -5,7 +5,7 @@ import { QuestionCardTop, Options } from './components/Question'
 import { Link } from 'react-router-dom'
 import { FaTimes } from 'react-icons/fa'
 
-const Review = ({ marked, questions }) => {
+const Review = ({ marked, reviewQuestions }) => {
     useEffect(() => {
         console.log(marked)
     }, [marked])
@@ -16,7 +16,7 @@ const Review = ({ marked, questions }) => {
     const classes = useStyles();
     const [reviewIndex, setReviewIndex] = useState(reviewResults.failedNumbers[0] - 1)
     //CONSTANTS
-    const currentQuestion = questions[reviewIndex]
+    const currentQuestion = reviewQuestions[reviewIndex]
     const choices = marked?.wrong?.filter((mark) => {
         if (reviewIndex + 1 === mark.number) {
             return mark.userAnswer
@@ -24,7 +24,7 @@ const Review = ({ marked, questions }) => {
         return ''
     })
     const wrongChoice = choices[0].userAnswer
-    const answers = questions.map((question) => question.answer)
+    const answers = reviewQuestions.map((question) => question.answer)
     const correct = answers[reviewIndex]
     const { question, option, image: questionImage } = currentQuestion
     const answeredNumber = 'contained'
