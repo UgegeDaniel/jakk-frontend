@@ -18,7 +18,7 @@ const QuestionNav = ({ navProps: { setQuestionIndex, questionIndex, questions, a
             <div className={classes.mc}>
                 <Container>
                     <ul >
-                        {questions.map((question, index) => (<Button size="small" variant={isPresent(attemptedNumbers, index + 1) ? answeredNumber : 'outlined'} color={index === questionIndex ? 'secondary' : 'primary'} key={index} onClick={() => setQuestionIndex(index)}>{index + 1}</Button>))}
+                        {questions.map((question, index) => (<Button size="small" variant={isPresent(attemptedNumbers, index + 1) ? "contained" : 'outlined'} color={index === questionIndex ? 'textPrimary' : 'secondary'} key={index} onClick={() => setQuestionIndex(index)}>{index + 1}</Button>))}
                     </ul>
                 </Container>
             </div>
