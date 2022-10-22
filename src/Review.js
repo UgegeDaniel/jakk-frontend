@@ -46,7 +46,7 @@ const Review = ({ marked, questions }) => {
                         </CardContent>
                         <Container>
                             <div className={classes.my}>
-                                {reviewResults.failedNumbers.map((failedNum, index) => (
+                                {reviewResults.failedNumbers.sort(function(a, b){return a-b}).map((failedNum, index) => (
                                     <Button key={index} onClick={() => setReviewIndex(failedNum - 1)} variant='contained' color={reviewResults.failedNumbers[index] === reviewIndex + 1 ? "secondary" : 'primary'}>{failedNum}</Button>
                                 ))}
                             </div>
