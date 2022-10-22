@@ -35,7 +35,12 @@ const Questions = ({ timer, setTimer, questions, testParams, student, setMarked,
     const submitHandler = () => { setMarked(handleSubmit(handleSetters, handleValues, QUESTIONSTATES)) }
     return (
         <div className={classes.mc}>
-            {questions.length === 0 ? <Skeleton />
+            {questions.length === 0 ? 
+            
+            <div>
+            <Skeleton />
+            <Link to="/params"><Button variant='contained' color="secondary" size="small" >Go back to Params</Button></Link>
+            </div>
                 :
                 (<Paper>
                     <Container>
