@@ -35,7 +35,6 @@ const TestParams = ({ testParams, setTestParams }) => {
       } else {
         return
       }
-
     }
     fetchData()
   }, [subject, year])
@@ -43,6 +42,7 @@ const TestParams = ({ testParams, setTestParams }) => {
   const handleStart = async (e) => {
     setPath('/questions')
   }
+  
   return (
     <div>
       <Paper>

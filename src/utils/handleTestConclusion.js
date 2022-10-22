@@ -1,6 +1,6 @@
 import { updateHistory } from '../api/auth'
-export const handleSubmit = (setters, values, QUESTIONSTATES) => {
-    const { setTimer } = setters
+export const handleSubmit = (setters, values) => {
+    const { setTimer, setQuestions } = setters
     const { timer, attempts, answers, testParams, student } = values
     const { email } = student
     const timeTaken = new Date().toISOString()
@@ -19,8 +19,9 @@ export const handleSubmit = (setters, values, QUESTIONSTATES) => {
     const wrong = marked.filter((mark) => mark.wrong)
     const percentage = ((marked?.correct?.length / 40) * 100).toFixed(2)
     const newData = { id: marked?.timeTaken, subject: marked?.subject, scores: percentage, timeTaken: marked?.timeTaken }
+    localStorage.removeItem('timer')
+    setQuestions([])
     updateHistory(email, newData)
-    console.log(QUESTIONSTATES)
     return { correct, wrong, timeTaken, subject }
 }
 

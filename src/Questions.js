@@ -6,41 +6,38 @@ import { Link } from 'react-router-dom'
 import { isPresent, handleChoice, handleSubmit } from './utils'
 import { useState } from 'react'
 
-const Questions = ({ timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts, setAttemptedNumbers, attemptedNumbers }) => {
+const Questions = ({ questionPageProps }) => {
+    const { timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts, setAttemptedNumbers, attemptedNumbers, setQuestions } = questionPageProps
     const [questionIndex, setQuestionIndex] = useState(0)
     const currentQuestion = questions.length > 0 && questions[questionIndex]
-
-    //this array holds the numbers a user has attempted.
-    const [attemptedAnswers, setAttemptedAnswers] = useState([])
-    //this array holds the option a user has clicked.
-    const [selectedAnswers, setSelectedAnswers] = useState([])
-    //keeps a record of the option a user while on a current 
-
-    const answeredNumber = isPresent(attemptedNumbers, questionIndex + 1) ? 'contained' : 'text'
     const answers = questions?.map((question) => question.answer)
-
     const { question, option, image: questionImage, section } = currentQuestion
 
+    const [attemptedAnswers, setAttemptedAnswers] = useState([])  //this array holds the options a user has clicked.
+    const [selectedAnswers, setSelectedAnswers] = useState([])   //keeps a record of the option a user has clicked on while on a question 
+    const answeredNumber = isPresent(attemptedNumbers, questionIndex + 1) ? 'contained' : 'text' //returns contained or text depending on whether or not a user has chosen an option
+
     const classes = useStyles()
-    const questionTopProps = { answeredNumber, questionIndex, questionImage, question, section }
 
     const setters = { setSelectedAnswers, setAttemptedNumbers, setAttemptedAnswers, setAttempts }
     const values = { attemptedNumbers, questionIndex, attemptedAnswers, selectedAnswers, attempts }
     const choiceHandler = (e) => handleChoice(e, setters, values)
+
+    const questionTopProps = { answeredNumber, questionIndex, questionImage, question, section }
     const optionsProps = { option, choiceHandler, attempts, questionIndex }
     const navProps = { setQuestionIndex, questionIndex, questions, attemptedNumbers, answeredNumber }
+
     const handleValues = { timer, attempts, answers, testParams, student }
-    const handleSetters = { setTimer }
-    const QUESTIONSTATES = { attemptedAnswers, selectedAnswers, attemptedNumbers, questionIndex, attempts }
-    const submitHandler = () => { setMarked(handleSubmit(handleSetters, handleValues, QUESTIONSTATES)) }
+    const handleSetters = { setTimer, setQuestions }
+    const submitHandler = () => { setMarked(handleSubmit(handleSetters, handleValues)) }
     return (
         <div className={classes.mc}>
-            {questions.length === 0 ? 
-            
-            <div>
-            <Skeleton />
-            <Link to="/params"><Button variant='contained' color="secondary" size="small" >Go back to Params</Button></Link>
-            </div>
+            {questions.length === 0 ?
+
+                <div>
+                    <Skeleton />
+                    <Link to="/params"><Button variant='contained' color="primary" size="small" >Go back to Test Params</Button></Link>
+                </div>
                 :
                 (<Paper>
                     <Container>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate  } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Container, ThemeProvider, Grid, } from '@material-ui/core'
 import { fetchQuestions } from './api'
 
@@ -14,10 +14,8 @@ import Form from './Form'
 import Question from './Questions'
 import Results from './Results'
 import Review from './Review'
-import dummyData from './dummyData'
 
 const App = () => {
-  //STATES
   const [student, setStudent] = useState(null)
   const [testParams, setTestParams] = useState({ subject: '', year: '', examtype: 'utme' })
   const [notification, setNotification] = useState({ show: false, msg: '', type: 'danger' })
@@ -26,7 +24,8 @@ const App = () => {
   const [attempts, setAttempts] = useState([])
   const [marked, setMarked] = useState({})
   const [attemptedNumbers, setAttemptedNumbers] = useState([])
-  //FUNCTION VALUES -- CHOICE HANDLER
+  const questionPageProps = { timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts, setAttemptedNumbers, attemptedNumbers, setQuestions }
+
   useEffect(() => {
     const login = JSON.parse(localStorage.getItem('student'))
     if (login) {
@@ -50,8 +49,6 @@ const App = () => {
       fetchData()
     }
   }, [testParams])
-
-
   return (
     < Router >
       <ThemeProvider theme={theme}>
@@ -62,8 +59,8 @@ const App = () => {
           }
           <div>
             <Routes>
-              <Route exact path="/" element={!student ? 
-              <Grid container spacing={3} justifyContent="center" align="center" > <Hero /> <Form setNotification={setNotification} setStudent={setStudent} /> </Grid>
+              <Route exact path="/" element={!student ?
+                <Grid container spacing={3} justifyContent="center" align="center" > <Hero /> <Form setNotification={setNotification} setStudent={setStudent} /> </Grid>
                 : <Navigate to='/dashboard' />} />
               <Route exact path="/dashboard" element={student ?
                 <Dashboard student={student} />
@@ -72,13 +69,13 @@ const App = () => {
                 <TestParams setNotification={setNotification} setTimer={setTimer} testParams={testParams} setTestParams={setTestParams} />
                 : <Navigate to='/' />} />
               <Route exact path="/questions" element={student ?
-                <Question timer={timer} setTimer={setTimer} questions={questions} testParams={testParams} student={student} setMarked={setMarked} attempts={attempts} setAttempts={setAttempts} setAttemptedNumbers={setAttemptedNumbers} attemptedNumbers={attemptedNumbers} />
+                <Question questionPageProps={questionPageProps} />
                 : <Navigate to='/' />} />
               <Route exact path="/results" element={student ?
                 <Results marked={marked} attempts={attempts} />
                 : <Navigate to='/' />} />
               <Route exact path="/review" element={student ?
-                <Review marked={marked} questions={questions}/>
+                <Review marked={marked} questions={questions} />
                 : <Navigate to='/' />} />
             </Routes>
           </div>
