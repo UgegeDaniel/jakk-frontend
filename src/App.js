@@ -1,19 +1,10 @@
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { Container, ThemeProvider, Grid, } from '@material-ui/core'
+import { Container, ThemeProvider, } from '@material-ui/core'
 import { fetchQuestions } from './api'
-
-// import PaystackPop from '@paystack/inline-js'
-// import { payWithPaystack } from './utils'
 import { theme } from './components/styles'
 import { AppHeader, Notification } from './components'
-import TestParams from './TestParams'
-import Dashboard from './Dashboard'
-import Hero from './Hero'
-import Form from './Form'
-import Question from './Questions'
-import Results from './Results'
-import Review from './Review'
+import { Auth, Dashboard, TestParams, Questions, Results, Review } from './pages'
 
 const App = () => {
   const [student, setStudent] = useState(null)
@@ -23,9 +14,11 @@ const App = () => {
   const [reviewQuestions, setReviewQuestions] = useState([])
   const [timer, setTimer] = useState({ hour: 0, minute: 0, second: 0 })
   const [attempts, setAttempts] = useState([])
-  const [marked, setMarked] = useState({})
+  const [marked, setMarked] = useState([])
   const [attemptedNumbers, setAttemptedNumbers] = useState([])
-  const questionPageProps = { timer, setTimer, questions, testParams, student, setMarked, attempts, setAttempts, setAttemptedNumbers, attemptedNumbers, setQuestions }
+  const [submitted, setSubmitted] = useState(false)
+  const questionPageProps = { timer, setTimer, questions, testParams, student, setMarked, 
+    attempts, setAttempts, setAttemptedNumbers, attemptedNumbers, setSubmitted }
 
   useEffect(() => {
     const login = JSON.parse(localStorage.getItem('student'))
@@ -33,6 +26,8 @@ const App = () => {
       setStudent(login)
     }
   }, [])
+
+  //TEST STARTED
   useEffect(() => {
     const { subject, year, examtype } = testParams
     if (subject && year) {
@@ -41,8 +36,7 @@ const App = () => {
         if (data?.length > 0) {
           setQuestions(data)
           setReviewQuestions(data)
-          setTestParams({ subject: '', year: '', examtype: 'utme' })
-          setTimer({ hour: 2, minute: 0, second: 0 })
+          setTimer({ hour: 0, minute: 0, second: 20 })
         }
         else {
           return
@@ -51,6 +45,26 @@ const App = () => {
       fetchData()
     }
   }, [testParams])
+
+
+  //TEST CONCLUDED
+  useEffect(()=>{
+    if(submitted){
+      const testSubmitted = () => {
+        const login = JSON.parse(localStorage.getItem('student'))
+        if (login) {
+          setStudent(login)
+        }
+        localStorage.removeItem('timer')
+        setQuestions([])
+        setTestParams({ subject: '', year: '', examtype: 'utme' })
+        setTimer({ hour: 0, minute: 0, second: 0 })
+        setSubmitted(false)
+      }
+      testSubmitted()
+    }
+  },[submitted, timer])
+  
   return (
     < Router >
       <ThemeProvider theme={theme}>
@@ -59,10 +73,10 @@ const App = () => {
           {notification.show &&
             <Notification notification={notification} setNotification={setNotification} />
           }
-          <div>
+          <Container>
             <Routes>
               <Route exact path="/" element={!student ?
-                <Grid container spacing={3} justifyContent="center" align="center" > <Hero /> <Form setNotification={setNotification} setStudent={setStudent} /> </Grid>
+                <Auth setStudent={setStudent} setNotification={setNotification} />
                 : <Navigate to='/dashboard' />} />
               <Route exact path="/dashboard" element={student ?
                 <Dashboard student={student} />
@@ -71,16 +85,16 @@ const App = () => {
                 <TestParams setNotification={setNotification} setTimer={setTimer} testParams={testParams} setTestParams={setTestParams} />
                 : <Navigate to='/' />} />
               <Route exact path="/questions" element={student ?
-                <Question questionPageProps={questionPageProps} />
+                <Questions questionPageProps={questionPageProps} />
                 : <Navigate to='/' />} />
               <Route exact path="/results" element={student ?
                 <Results marked={marked} attempts={attempts} />
                 : <Navigate to='/' />} />
               <Route exact path="/review" element={student ?
-                <Review marked={marked} reviewQuestions={reviewQuestions} />
+                <Review marked={marked} reviewQuestions={reviewQuestions} attempts={attempts}/>
                 : <Navigate to='/' />} />
             </Routes>
-          </div>
+          </Container>
         </Container>
       </ThemeProvider>
     </Router >

@@ -1,6 +1,3 @@
 export { isPresent, previouslyClicked, handleChoice } from './handleChoice'
-export { payWithPaystack } from './handlePayment'
 export { nextQuestion, previousQuestion } from './navigation'
 export { handleSubmit } from './handleTestConclusion'
-export { handleAuth } from './handleAuth'
-export { handleTestStart } from './handleTestStart'

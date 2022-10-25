@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { SkeletonElement } from './SkeletonElement'
 const Skeleton = ({ theme }) => {
     const themeClass = theme || 'light'
@@ -25,5 +26,7 @@ const Skeleton = ({ theme }) => {
         </div>
     </div>)
 }
-
+Skeleton.propTypes = {
+    theme: PropTypes.string,
+};
 export default Skeleton

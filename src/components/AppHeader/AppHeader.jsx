@@ -1,7 +1,8 @@
-import { AppBar, Toolbar, Avatar, Button, Chip } from '@material-ui/core'
-import { FaUser, FaDoorOpen } from 'react-icons/fa'
+import PropTypes from 'prop-types';
+import { AppBar, Toolbar, Avatar, Fab } from '@material-ui/core'
+import { FaDoorOpen } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useStyles, orangeAvatar, purpleAvatar } from '../styles'
+import { useStyles, evenAvatar, oddAvatar } from '../styles'
 import { jamb, waec, neco } from '../../assests'
 import { logout } from '../../api/auth'
 const AppHeader = ({ setStudent, student }) => {
@@ -12,31 +13,24 @@ const AppHeader = ({ setStudent, student }) => {
                 <Toolbar className={classes.header}>
                     <Link to="/">
                         <div className={classes.logoContainer}>
-                            {['J', 'A', 'K', 'K'].map((letter, index) => (
-                                <Avatar style={index % 2 === 0 ? orangeAvatar : purpleAvatar} key={index}>{letter}</Avatar>
-                            ))}
+                            {['J', 'A', 'K', 'K'].map((letter, index) => (<Avatar style={index % 2 === 0 ? evenAvatar : oddAvatar} key={index}>{letter}</Avatar>))}
                         </div>
                     </Link>
                     <div className={`${classes.logoContainer} ${classes.examBodies}`}>
-                        {[jamb, waec, neco].map((logo, index) => (
-                            <div className={classes.logo} key={index}><img className={classes.logoStyle} src={logo} alt='exam body logo' /></div>
-                        ))}
+                        {[jamb, waec, neco].map((logo, index) => (<div className={classes.logo} key={index}><img className={classes.logoStyle} src={logo} alt='exam body logo' /></div>))}
                     </div>
+                    {student && <Fab variant="extended" color="secondary" onClick={() => logout(setStudent)} >
+                        {student && <FaDoorOpen style={{ margin: 'auto 5px' }} />} Log out
+                    </Fab>}
                 </Toolbar>
             </AppBar>
-            <div className={classes.toolbar}>
-            </div>
-            <div className={classes.toolbar}>
-                {
-                    student && <div className={classes.flex}>
-                        <Chip className={classes.userChip} avatar={<Avatar>{<FaUser />}</Avatar>} variant='default' label={`${student?.userName}`} color="secondary" />
-                        <Button className={classes.btn} onClick={() => logout(setStudent)} startIcon={<FaDoorOpen />} variant='contained' color="secondary" size="small" type="submit">
-                            Log out
-                        </Button>
-                    </div>
-                }
-            </div>
-        </div>
+            <div className={classes.toolbar}>k</div>
+        </div >
     )
 }
+AppHeader.propTypes = {
+    setStudent: PropTypes.func,
+    student: PropTypes.object,
+};
 export default AppHeader
+

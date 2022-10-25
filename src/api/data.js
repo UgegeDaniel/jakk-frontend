@@ -2,7 +2,7 @@ const options = {
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'AccessToken': 'ALOC-0cf7527417b13cc77fdd',
+        'AccessToken': `QB-d58fe1605f0318db11c2`,
     },
     method: "GET",
 };
@@ -25,7 +25,6 @@ export const fetchYears = async (subject) => {
     try {
         const response = await fetch(`${yearsUrl}/${subject}`, options)
         const { data } = await response.json()
-        console.log(data)
         return data
     } catch (error) {
         console.log(error)
@@ -37,7 +36,6 @@ export const fetchQuestions = async (subject, year, examType) => {
     try {
         const response = await fetch(url, options)
         const {data}  = await response.json()
-        console.log({data, url})
         return data
     } catch (error) {
         console.log(error)

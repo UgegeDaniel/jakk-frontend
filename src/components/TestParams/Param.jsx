@@ -1,6 +1,8 @@
 import { Button } from '@material-ui/core'
 import { useState } from 'react'
-const Param = ({ items, testParams, setTestParams, className, feild }) => {
+import PropTypes from 'prop-types';
+
+const Param = ({ items, testParams, setTestParams, className, feild, setSuccess }) => {
     const [clicked, setClicked] = useState(null)
     const [yearClicked, setYearClicked] = useState(null)
     const onClickHandler = (e, index) => {
@@ -11,7 +13,7 @@ const Param = ({ items, testParams, setTestParams, className, feild }) => {
         } else if (feild === 'year') {
             setYearClicked(index)
             setTestParams({ ...testParams, year: e.target.textContent })
-            // testParams.year ? setClicked(index) : setClicked(null)
+            setSuccess(true)
         }
     }
     return (
@@ -24,6 +26,12 @@ const Param = ({ items, testParams, setTestParams, className, feild }) => {
         </ul>
     )
 }
-
+Param.propTypes = {
+    items: PropTypes.array,
+    testParams: PropTypes.object,
+    setTestParams: PropTypes.func,
+    className: PropTypes.string,
+    feild: PropTypes.string,
+    setSuccess: PropTypes.func,
+};
 export default Param
-

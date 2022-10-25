@@ -1,71 +1,51 @@
-import { Button, Container, Paper, Card, CardContent, Typography, Chip } from '@material-ui/core'
-import { useStyles } from '../components/styles'
 import { useState } from 'react'
-import { QuestionCardTop, Options } from '../components/Question'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
+import { Button, Container, Paper, Card, CardContent, Typography, Chip } from '@material-ui/core'
 import { FaTimes } from 'react-icons/fa'
+import { useStyles } from '../components/styles'
+import { QuestionCardTop, Options } from '../components/Question'
 
-const Review = ({ marked }) => {
-  const reviewResults = {
-    failedNumbers: marked?.wrong?.length > 0 ? marked?.wrong?.map((mark) => mark.number) : [],
-  }
-  //STATES AND HOOKS 
-  const classes = useStyles();
-  const [questions] = useState([]);
-  const [reviewIndex, setReviewIndex] = useState(reviewResults.failedNumbers[0] - 1)
-  //CONSTANTS
-  const currentQuestion = questions[reviewIndex]
-  const choices = marked?.wrong?.filter((mark) => {
-    if (reviewIndex + 1 === mark.number) {
-      return mark.userAnswer
+const Review = ({ marked, reviewQuestions }) => {
+    const reviewResults = marked?.filter((mark) => mark.wrong === "wrong" && mark)
+    const classes = useStyles();
+    const [reviewIndex, setReviewIndex] = useState(reviewResults[0].number - 1)
+    const wrongChoice = marked.find((mark) => mark.number === reviewIndex + 1).userAnswer
+    const answers = reviewQuestions.map((question) => question.answer)
+    const handleChoice = (e) => {
+        return
     }
-    return ''
-  })
-  const wrongChoice = choices[0].userAnswer
-  const answers = questions.map((question) => question.answer)
-  const correct = answers[reviewIndex]
-  const { question, option, image: questionImage } = currentQuestion
-  const answeredNumber = 'contained'
-  const choiceHandler = (e) => {
-    return
-  }
-  //COMPONENT PROPS 
-  const questionTopProps = { answeredNumber, questionIndex: reviewIndex, questionImage, question, reviewIndex }
-  const optionsProps = { option, attempts: answers, reviewIndex, correct, choiceHandler }
-
-  return (
-    <div className={classes.mc}>
-      <Paper>
-        <Container>
-          <Card elevation={3}>
-            <CardContent>
-              <QuestionCardTop questionTopProps={questionTopProps} />
-              <Options optionsProps={optionsProps} />
-            </CardContent>
-            <Container>
-              <div className={classes.my}>
-                {reviewResults.failedNumbers.map((failedNum, index) => (
-                  <Button key={index} onClick={() => setReviewIndex(failedNum - 1)} variant='contained' color={reviewResults.failedNumbers[index] === reviewIndex + 1 ? "secondary" : 'primary'}>{failedNum}</Button>
-                ))}
-              </div>
-            </Container>
-            <Container>
-              <Typography className={classes.my}>You chose : </Typography><Chip name={wrongChoice} color="secondary" avatar={<FaTimes style={{ color: "red" }} />} label={wrongChoice.toUpperCase()} />
-            </Container>
-            <Container className={classes.my}>
-              <Link to="/checkout">
-                <Button className={classes.mc} variant='contained' color="primary" size="small" type="submit">Tip the Developer</Button>
-              </Link>
-              <Link to="/">
-                <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit">Go to Dashboard</Button>
-              </Link>
-            </Container>
-          </Card>
-        </Container>
-      </Paper>
-    </div>
-  )
+    return (
+        <div className={classes.mc}>
+            <Paper>
+                <Container>
+                    <Card elevation={3}>
+                        <CardContent>
+                            <QuestionCardTop answeredNumber='contained' questionIndex={reviewIndex} currentQuestion={reviewQuestions[reviewIndex]} />
+                            <Options correct={answers[reviewIndex]} currentQuestion={reviewQuestions[reviewIndex]} handleChoice={handleChoice} attempts={[]} questionIndex={reviewIndex} />
+                        </CardContent>
+                        <Container>
+                            <div className={classes.my}>
+                                {reviewResults.sort(function (a, b) { return a - b }).map((result, index) => (
+                                    <Button key={index} onClick={() => setReviewIndex(result.number - 1)} variant='contained' color={result.number === reviewIndex + 1 ? "secondary" : 'primary'}>{result.number}</Button>
+                                ))}
+                            </div>
+                        </Container>
+                        <Container>
+                            <Typography className={classes.my}>You chose : </Typography><Chip name={wrongChoice} color="secondary" avatar={<FaTimes style={{ color: "red", fontSize: "8px" }} />} label={wrongChoice.toUpperCase()} />
+                        </Container>
+                        <Link to="/">
+                            <Button className={classes.mc} variant='contained' color="secondary" size="small" type="submit">Go to Dashboard</Button>
+                        </Link>
+                    </Card>
+                </Container>
+            </Paper>
+        </div>
+    )
 }
-
+Review.propTypes = {
+    marked: PropTypes.array,
+    reviewQuestions: PropTypes.array,
+};
 export default Review
 
