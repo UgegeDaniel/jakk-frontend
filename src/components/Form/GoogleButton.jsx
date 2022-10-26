@@ -36,9 +36,9 @@ const GoogleButton = ({ setNotification, isLogin, setStudent }) => {
             <GoogleLogin
                 clientId={GOOGLE_CLIENT_ID}
                 render={(renderProps) => (
-                    <Button className={classes.btn} color="primary" size="small" 
-                    onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                        Google Sign In
+                    <Button className={classes.btn} color="primary" size="small"
+                        onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
+                        {isLogin ? "Google Log in" : "Google Sign Up"}
                     </Button>
                 )}
                 onSuccess={googleSuccess} onFailure={googleError} cookiePolicy="single_host_origin"
