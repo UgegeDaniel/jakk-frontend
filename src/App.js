@@ -36,7 +36,7 @@ const App = () => {
         if (data?.length > 0) {
           setQuestions(data)
           setReviewQuestions(data)
-          setTimer({ hour: 0, minute: 0, second: 20 })
+          setTimer({ hour: 2, minute: 0, second: 0 })
         }
         else {
           return
