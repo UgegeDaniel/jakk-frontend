@@ -3,7 +3,7 @@ const options = {
     headers: { 'Content-type': 'application/json' },
 };
 
-const baseUrl = 'http://localhost:8080'
+const baseUrl = 'https://jakk-backend.herokuapp.com'
 
 export const login = async (credentials) => {
     const { email, password } = credentials
