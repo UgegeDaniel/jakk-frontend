@@ -105,7 +105,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-- 🇳🇬 Ugege Daniel- ugege62@gmail.com | [Github Account](https://github.com/UgegeDaniel) | [Twitter](https://twitter.com/@U_danny) | [Linkedin](https://linkedin.com/in/ugege-daniel) | 
+- 🇳🇬 Ugege Daniel- ugege62@gmail.com | [Github Account](https://github.com/UgegeDaniel) | [Twitter](https://twitter.com/@Ugege_daniel) | [Linkedin](https://linkedin.com/in/ugege-daniel) | 
 
 ## Acknowledgements
 
