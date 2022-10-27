@@ -58,6 +58,7 @@ Below is are some screenshots of what it looks like.
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(7).png" alt=""/>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(9).png" alt=""/>
+<img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(10).png" alt=""/>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(11).png" alt=""/>
 
 <!-- REQUIRED INSTALLATION -->
@@ -75,19 +76,19 @@ Once you have installed the required packages shown on the [Required Installatio
 Clone the Repository
 
 ```Shell
-your@pc:~$ git clone git@github.com:frankly034/moviemania-app.git
+your@pc:~$ git clone git@github.com:UgegeDaniel/jakk-frontend.git
 ```
 
 Move to the downloaded folder
 
 ```Shell
-your@pc:~$ cd moviemania
+your@pc:~$ cd jakk-frontend
 ```
 
 Install all packages
 
 ```Shell
-your@pc:~$ npm install
+your@pc:~$ npm install --legacy-peer-deps
 ```
 
 Open the app
@@ -104,8 +105,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-- 🇳🇬 Lewis Ugege - franklynugege@gmail.com | [Github Account](https://github.com/frankly034) | [Twitter](https://twitter.com/@wizlulu) | [Linkedin](https://linkedin.com/in/lewis-ugege) | 
+- 🇳🇬 Ugege Daniel- ugege62@gmail.com | [Github Account](https://github.com/UgegeDaniel) | [Twitter](https://twitter.com/@U_danny) | [Linkedin](https://linkedin.com/in/ugege-daniel) | 
 
 ## Acknowledgements
 
-- <a href="https://www.themoviedb.org/"> TMDB</a> and God Almighty .
+- <a href="https://github.com/Seunope"> Seun Ope </a> , <a href="https://github.com/frankly034"> Lewis Ugege </a>and God Almighty .
