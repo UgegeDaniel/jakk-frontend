@@ -18,8 +18,10 @@ This is a simple full stack application geared towards aiding students sitting f
 ## JAKK Features
 
 - A user upon visiting the app, sees a sign up / log in form of which a username, email and password are required.
-- Upon provision of valid credentials, users are allowed access to their dashboards that displays user history on a line or bar chart.
-- Conversely, upon provision of invalid credentials, users are notified with error messages.
+- Upon provision of valid credentials, users are allowed access to their dashboards that displays user history on a line or bar chart. Users can click on a button to button to take a test.
+- Users can choose the subject and year of questions they wish to take the test in.
+- Clicking the submit button serves a result page with results and an option to see correct answers.
+- Conversely, upon provision of invalid credentials during sign up / login, users are notified with error messages.
 
 <!-- concepts and apis employed -->
 
