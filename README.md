@@ -54,7 +54,10 @@ This is a simple full stack application geared towards aiding students sitting f
 ## Live Preview
 
 Find the live version [here](https://jakk-frontend.pages.dev/).
-Below is a screenshot of what it looks like.
+Below is are some screenshots of what it looks like.
+<img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
+<img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
+<img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
 
 <!-- REQUIRED INSTALLATION -->
