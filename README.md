@@ -25,19 +25,20 @@ This is a simple full stack application geared towards aiding students sitting f
 
 ## Concepts and APIs Employed
 
-- The API employed for the questions was gotten developed by [Seunope](https://github.com/Seunope).
-- Official API documentation for the movie db can be found [here](https://developers.themoviedb.org/3)
-- This app demonstrates the use of basic concepts of Angular Application 
-  - Modules
-  - Compnents structuring 
-  - Shared components
-  - Pipes
-  - Guards
-  - Routing
-  - Two way binding 
-  - Services 
-  - HttpModule
-  - rxjs (Observables)
+- The API employed for the questions was developed by [Seunope](https://github.com/Seunope).
+- Official API documentation for the movie db can be found [here](https://github.com/Seunope/aloc-endpoints)
+- The API employed for the authentication of users was developed by [UgegeDaniel](https://github.com/UgegeDaniel).
+- Official API documentation for the authentication api can be found [here](https://github.com/UgegeDaniel/jakk-backend)
+
+- This app demonstrates the use of basic concepts of MERN Stack 
+  - Express Routes
+  - Mongoose Models 
+  - JSON Web Token
+  - React Functional Components
+  - React useState / useEffect hooks
+  - React Router Dom (For Routing)
+  - React Prop Types for props checking 
+  - Material UI Components 
 
 <!-- BUILT wITH -->
 
@@ -46,29 +47,15 @@ This is a simple full stack application geared towards aiding students sitting f
 - HTML5
 - CSS3
 - JavaScript
-- Angular
-
-<!-- MOCK DESIGNS -->
-
-## Mock Designs
-
-See mock design guides for the app below;
-
-- Home Screen.
-![Image](/src/assets/mocks/home-screen.png)
-- Movie Category List Screen.
-![Image](/src/assets/mocks/category-screen.png)
-- Single Movie View Screen.
-![Image](/src/assets/mocks/single-view-screen.png)
+- React
 
 <!-- LIVE PREVIEW -->
 
 ## Live Preview
 
-Find the live version [here](https://moviemania-app.netlify.app/).
+Find the live version [here](https://jakk-frontend.pages.dev/).
 Below is a screenshot of what it looks like.
 
-https://user-images.githubusercontent.com/31358867/142187908-396f7f76-3304-4818-851b-148cf93bfec9.mp4
 
 
 <!-- REQUIRED INSTALLATION -->
