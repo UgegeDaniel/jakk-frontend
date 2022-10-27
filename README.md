@@ -30,7 +30,7 @@ This is a simple full stack application geared towards aiding students sitting f
 - The API employed for the authentication of users was developed by [UgegeDaniel](https://github.com/UgegeDaniel).
 - Official API documentation for the authentication api can be found [here](https://github.com/UgegeDaniel/jakk-backend)
 
-- This app demonstrates the use of basic concepts of MERN Stack 
+- This app demonstrates the use of basic concepts of the MERN Stack 
   - Express Routes
   - Mongoose Models 
   - JSON Web Token
@@ -55,7 +55,7 @@ This is a simple full stack application geared towards aiding students sitting f
 
 Find the live version [here](https://jakk-frontend.pages.dev/).
 Below is a screenshot of what it looks like.
-
+https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png
 
 
 <!-- REQUIRED INSTALLATION -->
