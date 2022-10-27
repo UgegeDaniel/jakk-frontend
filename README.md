@@ -55,10 +55,17 @@ This is a simple full stack application geared towards aiding students sitting f
 
 Find the live version [here](https://jakk-frontend.pages.dev/).
 Below is are some screenshots of what it looks like.
+<h3>Sign Up / Log in Page</h3>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/jakk.png" alt=""/>
+<h3>Dashboard</h3>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(7).png" alt=""/>
+<h3>Select your Test Parameters</h3>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(9).png" alt=""/>
+<h3>Take Test</h3>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(10).png" alt=""/>
+<h3>See Results</h3>
+<img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(11).png" alt=""/>
+<h3>See Review</h3>
 <img src="https://github.com/UgegeDaniel/jakk-frontend/blob/main/jakk-preview/Screenshot%20(11).png" alt=""/>
 
 <!-- REQUIRED INSTALLATION -->
