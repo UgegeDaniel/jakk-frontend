@@ -25,7 +25,7 @@ This is a simple full stack application geared towards aiding students sitting f
 
 ## Concepts and APIs Employed
 
-- The API employed for the questions was gotten developed by TMDB [here](https://www.themoviedb.org/).
+- The API employed for the questions was gotten developed by Seunope [here]([https://github.com/Seunope]).
 - Official API documentation for the movie db can be found [here](https://developers.themoviedb.org/3)
 - This app demonstrates the use of basic concepts of Angular Application 
   - Modules
